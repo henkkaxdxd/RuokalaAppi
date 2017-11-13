@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RuokalistaActivity" />
+        <activity android:name=".ReviewActivity" />
     </application>
 
 </manifest>

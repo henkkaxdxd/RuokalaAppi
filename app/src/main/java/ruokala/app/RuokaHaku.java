@@ -5,11 +5,10 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 public class RuokaHaku extends Thread {
 
-    private static String url = "http://www.amica.fi/api/restaurant/menu/day?date=2017-11-9&language=en&restaurantPageId=66287";
+    private static String url = "http://www.amica.fi/api/restaurant/menu/day?date=2017-11-13&language=en&restaurantPageId=66287";
     //"http://www.amica.fi/api/restaurant/menu/day?date=2017-10-3&language=en&restaurantPageId=66287";
 
     private static final String TAG_LUNCH_MENU = "LunchMenu";
@@ -35,7 +34,7 @@ public class RuokaHaku extends Thread {
     }
 
     public void run(){
-        JSONParser jParser = new JSONParser();
+        JSONhaku jParser = new JSONhaku();
 
         // getting JSON string from URL
         json = jParser.getJSONFromUrl(url);

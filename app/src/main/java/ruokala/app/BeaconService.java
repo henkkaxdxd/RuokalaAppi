@@ -20,6 +20,8 @@ public class BeaconService extends Application {
     private BeaconManager beaconManager;
     private String bmajori;
 
+    boolean tulossa = true;
+
     private static final BeaconRegion allBeaconsRegion = new BeaconRegion("Beacons with default Estimote UUID",
             UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D"), null, null);
 
@@ -35,15 +37,24 @@ public class BeaconService extends Application {
                 Beacon beaconM = list.get(0);
                 bmajori = String.valueOf(beaconM.getMajor());
                 Log.i("pls", "majori: " + bmajori);
+                //Major 60020 = Tulee ruokalaan
+                //Major 42230 = Palauttaa tarjottimen
 
-                showNotification("Sup brah","(logged in)");
+                if (beaconM.getMajor() == 60020){
+                    tulossa = true;
+                    showNotification("Tervetuloa ruokalaan!","Avaa ruokalista klikkaamalla tätä.");
+                } else {
+                    tulossa = false;
+                    showNotification("Maistuiko ruoka?","Anna palautetta klikkaamalla tätä.");
+                }
             }
 
             @Override
             public void onExitedRegion(BeaconRegion region) {
                 Log.i("pls", "poistunut alueelta");
 
-                showNotification("Bye brah","(banned)");
+                showNotification("Kiitos käynnistä,","ja tervetuloa uudelleen!");
+                tulossa = false;
             }
         });
 
@@ -57,25 +68,46 @@ public class BeaconService extends Application {
     }
 
     public void showNotification(String title, String message) {
-        Intent notifyIntent = new Intent(this, MainActivity.class);
-        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        /*
-        PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,
-                new Intent[] { notifyIntent }, PendingIntent.FLAG_UPDATE_CURRENT);
-                */
-        PendingIntent contentIntent =
-                PendingIntent.getActivity(this, 0, new Intent(this, RuokalistaActivity.class), 0);
+        if (tulossa == true){
+            Intent notifyIntent = new Intent(this, MainActivity.class);
+            notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-        Notification notification = new Notification.Builder(this)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setAutoCancel(true)
-                .setContentIntent(contentIntent) //pendingIntent
-                .build();
-        notification.defaults |= Notification.DEFAULT_SOUND;
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
+            PendingIntent contentIntent =
+                    PendingIntent.getActivity(this, 0, new Intent(this, RuokalistaActivity.class), 0);
+
+            Notification notification = new Notification.Builder(this)
+                    .setSmallIcon(android.R.drawable.ic_dialog_info)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setAutoCancel(true)
+                    .setContentIntent(contentIntent) //pendingIntent alunperin
+                    .build();
+            notification.defaults |= Notification.DEFAULT_SOUND;
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notification);
+        } else if (tulossa == false) {
+            Intent notifyIntent = new Intent(this, MainActivity.class);
+            notifyIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+            PendingIntent contentIntent =
+                    PendingIntent.getActivity(this, 0, new Intent(this, ReviewActivity.class), 0);
+
+            Notification notification = new Notification.Builder(this)
+                    .setSmallIcon(android.R.drawable.ic_dialog_info)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setAutoCancel(true)
+                    .setContentIntent(contentIntent) //pendingIntent alunperin
+                    .build();
+            notification.defaults |= Notification.DEFAULT_SOUND;
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notification);
+        }
     }
 }
+        /*                      VANHA PENDINGINTENT
+        PendingIntent pendingIntent = PendingIntent.getActivities(this, 0,
+                new Intent[] { notifyIntent }, PendingIntent.FLAG_UPDATE_CURRENT);
+        */
