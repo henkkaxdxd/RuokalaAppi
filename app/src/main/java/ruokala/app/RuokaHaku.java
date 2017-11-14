@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 public class RuokaHaku extends Thread {
 
-    private static String url = "http://www.amica.fi/api/restaurant/menu/day?date=2017-11-13&language=en&restaurantPageId=66287";
+    private static String url = "http://www.amica.fi/api/restaurant/menu/day?date=2017-11-14&language=en&restaurantPageId=66287";
     //"http://www.amica.fi/api/restaurant/menu/day?date=2017-10-3&language=en&restaurantPageId=66287";
 
     private static final String TAG_LUNCH_MENU = "LunchMenu";

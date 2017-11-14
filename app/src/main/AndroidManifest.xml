@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".RuokalistaActivity" />
         <activity android:name=".ReviewActivity" />
+        <activity android:name=".PalauteActivity" />
     </application>
 
 </manifest>

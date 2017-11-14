@@ -32,4 +32,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
+
+    public void test3ButtonClick(View v){
+        Intent intent = new Intent(this, PalauteActivity.class);
+        startActivity(intent);
+    }
 }
