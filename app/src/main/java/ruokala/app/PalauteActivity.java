@@ -27,7 +27,7 @@ public class PalauteActivity extends AppCompatActivity implements HTTPGetThread.
                 TextView text = (TextView) findViewById(R.id.textView);
                 text.setText(data);
 
-                String data2 = data.replaceAll("orava1337", "\n");
+                String data2 = data.replaceAll("orava1337", "\n\n");
                 text.setText(data2);
             }
         });
