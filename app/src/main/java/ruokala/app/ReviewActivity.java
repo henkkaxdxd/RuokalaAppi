@@ -41,7 +41,7 @@ public class ReviewActivity extends Activity{
         if (message.isEmpty()){
             tvData.setText("Viesti kenttäsi on tyhjä!");
         } else {
-            new JSONtask().execute("ruokalareview.herokuapp.com/laheta/"+message); //ilman http://www.
+            new ReviewActivity.JSONtask().execute("https://ruokalareview.herokuapp.com/laheta/"+message); //ilman www.
             tvData.setText(message);
             editText.setText("");
         }

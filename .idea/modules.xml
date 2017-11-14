@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RuokalaApp.iml" filepath="$PROJECT_DIR$/RuokalaApp.iml" />
+      <module fileurl="file://D:\KouluProjektit\RuokalaAppi\RuokalaApp.iml" filepath="D:\KouluProjektit\RuokalaAppi\RuokalaApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RuokalaAppi.iml" filepath="$PROJECT_DIR$/RuokalaAppi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
